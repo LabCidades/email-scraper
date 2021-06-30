@@ -1,0 +1,10 @@
+name: email-scraper
+channels:
+  - conda-forge
+dependencies:
+  - pandas
+  - numpy
+  - python=3.9
+  - openpyxl
+  - scrapy
+  - autopep8
