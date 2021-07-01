@@ -55,10 +55,10 @@ Or with optional command line arguments like:
 
 ```bash
 # CSV
-scrapy crawl spider -a domain="https://your.domain.name" -a subdomain_exclusions="['blog', 'technology']" -a crawl_js=True -o emails-found.csv
+scrapy crawl spider -a domain="your.domain.name" -a subdomain_exclusions="['blog', 'technology']" -a crawl_js=True -o emails-found.csv
 
 # JSON
-scrapy crawl spider -a domain="https://your.domain.name" -a subdomain_exclusions="['blog', 'technology']" -a crawl_js=True -o emails-found.json
+scrapy crawl spider -a domain="your.domain.name" -a subdomain_exclusions="['blog', 'technology']" -a crawl_js=True -o emails-found.json
 ```
 
 ## RegEx to clean url
