@@ -45,10 +45,10 @@ convenient formats (`CSV`, `JSON`, etc.)
 For a each of single domain you can use the standard `scrapy` commands:
  ```bash
  # CSV
- scrapy crawl spider -a domain="https://your.domain.name" -o emails-found.csv
+ scrapy crawl spider -a domain="your.domain.name" -o emails-found.csv
 
  # JSON
- scrapy crawl spider -a domain="https://your.domain.name" -o emails-found.json
+ scrapy crawl spider -a domain="your.domain.name" -o emails-found.json
  ```
 
 Or with optional command line arguments like:
