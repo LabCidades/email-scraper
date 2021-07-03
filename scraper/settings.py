@@ -20,15 +20,18 @@ USER_AGENT = 'Mozilla/5.0'
 ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-CONCURRENT_REQUESTS = 32
+CONCURRENT_REQUESTS = 256
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-#DOWNLOAD_DELAY = 3
-# The download delay setting will honor only one of:
-#CONCURRENT_REQUESTS_PER_DOMAIN = 16
-#CONCURRENT_REQUESTS_PER_IP = 16
+DOWNLOAD_DELAY = 0
+DOWNLOAD_TIMEOUT = 10
+CONCURRENT_REQUESTS_PER_DOMAIN = 256
+CONCURRENT_REQUESTS_PER_IP = 256
+RETRY_ENABLED = True
+RETRY_TIMES = 3
+RETRY_HTTP_CODES = [500, 502, 503, 504, 400, 401, 403, 404, 405, 406, 407, 408, 409, 410, 429]
 
 # Disable cookies (enabled by default)
 COOKIES_ENABLED = False
@@ -45,7 +48,14 @@ TELNETCONSOLE_ENABLED = False
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 DOWNLOADER_MIDDLEWARES = {
-    'scraper.middlewares.SubdomainBlockerMiddleware': 100,
+    'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
+    'scrapy.spidermiddlewares.referer.RefererMiddleware': 80,
+    'scrapy.downloadermiddlewares.retry.RetryMiddleware': 90,
+    'scrapy.downloadermiddlewares.cookies.CookiesMiddleware': 130,
+    'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810,
+    'scrapy.downloadermiddlewares.redirect.RedirectMiddleware': 900,
+    'scraper.middlewares.ScraperDownloaderMiddleware': 1000
+    #'scraper.middlewares.SubdomainBlockerMiddleware': 100,
 }
 
 # Enable or disable downloader middlewares
@@ -68,16 +78,11 @@ ITEM_PIPELINES = {
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
-#AUTOTHROTTLE_ENABLED = True
-# The initial download delay
-#AUTOTHROTTLE_START_DELAY = 5
-# The maximum download delay to be set in case of high latencies
-#AUTOTHROTTLE_MAX_DELAY = 60
-# The average number of requests Scrapy should be sending in parallel to
-# each remote server
-#AUTOTHROTTLE_TARGET_CONCURRENCY = 1.0
-# Enable showing throttling stats for every response received:
-#AUTOTHROTTLE_DEBUG = False
+AUTOTHROTTLE_ENABLED = True
+AUTOTHROTTLE_START_DELAY = 0.25
+AUTOTHROTTLE_MAX_DELAY = 0.25
+AUTOTHROTTLE_TARGET_CONCURRENCY = 128
+AUTOTHROTTLE_DEBUG = True
 
 # Enable and configure HTTP caching (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html#httpcache-middleware-settings

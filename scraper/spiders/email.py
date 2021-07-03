@@ -42,13 +42,13 @@ class EmailSpider(scrapy.Spider):
         # print(selector.xpath('//a/@href').extract())
         all_urls.update(selector.xpath('//a/@href').extract())
         # also grab all sources, this will yield a bunch of binary files which we will filter out
-        # below, but it has the useful property that it will also grab all javavscript files links
+        # below, but it has the useful property that it will also grab all javascript files links
         # as well, we need to scrape these for urls to uncover js code that yields up urls when
         # executed! An alternative here would be to drive the scraper via selenium to execute the js
         # as we go, but this seems slightly simpler
         all_urls.update(selector.xpath('//@src').extract())
 
-        # custom regex that works on javascript files to extract relativel urls hidden in quotes.
+        # custom regex that works on javascript files to extract relative urls hidden in quotes.
         # This is a workaround for sites that need js executed in order to follow links -- aka
         # single-page angularJS type designs that have clickable menu items that are not rendered
         # into <a> elements but rather as clickable span elements - e.g. jana.com
