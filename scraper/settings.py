@@ -49,13 +49,13 @@ TELNETCONSOLE_ENABLED = False
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 DOWNLOADER_MIDDLEWARES = {
     'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
+    'scraper.middlewares.SubdomainBlockerMiddleware': 70,
     'scrapy.spidermiddlewares.referer.RefererMiddleware': 80,
     'scrapy.downloadermiddlewares.retry.RetryMiddleware': 90,
     'scrapy.downloadermiddlewares.cookies.CookiesMiddleware': 130,
     'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810,
     'scrapy.downloadermiddlewares.redirect.RedirectMiddleware': 900,
     'scraper.middlewares.ScraperDownloaderMiddleware': 1000
-    #'scraper.middlewares.SubdomainBlockerMiddleware': 100,
 }
 
 # Enable or disable downloader middlewares
