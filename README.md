@@ -20,7 +20,7 @@ The email scrapper is a two-step procedure:
 2. Extract all e-mail addresses from the links:
 
     ```bash
-    python scrap_email_threading.py [-h] [-t THREADS] file
+    python scrap_emails.py [-h] [-t THREADS] file
     ```
 
     where:
@@ -34,7 +34,7 @@ Prefer `http://` over `https://`:
 
 ```bash
 python scrap_links.py -m 100 "http://example.net"
-python scrap_email_threading.py -t 4 example.net_internal_links.txt
+python scrap_emails.py -t 4 example.net_internal_links.txt
 ```
 
 ## Creating a conda environment
