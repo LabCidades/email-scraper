@@ -10,7 +10,7 @@ import concurrent.futures
 
 from bs4 import BeautifulSoup
 from datetime import datetime
-   
+
 # setting SSL conection
 http = urllib3.PoolManager(ca_certs=certifi.where())
 
@@ -30,7 +30,7 @@ def download_email(url):
         with open(file_out, "a") as lnkfile:
             lnkfile.write(e + "\n")
         print(e)
-   
+
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(description="E-mail extractor by scraping")

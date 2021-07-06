@@ -1,5 +1,3 @@
-# https://github.com/x4nth055/pythoncode-tutorials/tree/master/web-scraping/link-extractor
-
 import re
 import urllib3
 import certifi
@@ -30,10 +28,10 @@ def get_links(url):
         soup = BeautifulSoup(requests.get(url).content, "html.parser")
         for a_tag in soup.findAll("a"):
             href = a_tag.attrs.get("href")
-            
+
             if re.search("mp3|wav|mp4|avi|pdf|jpg|jpeg|png|gif|mailto|svg|mailto|doc|docx|ppt|pptx|css|img|xls|xlsx", href):
                 continue
-            
+
             if re.search("facebook|youtube|twitter|linkedin|instragram", href):
                 continue
 
@@ -49,7 +47,7 @@ def get_links(url):
 
             if href in internal_urls:
                 continue
-            
+
             if domain_name not in href:
                 continue
             print("\tLink found:", href)
@@ -78,7 +76,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Link Extractor")
     parser.add_argument("url", help="The URL to extract links from.")
     parser.add_argument("-m", "--max-urls", help="Number of max URLs to crawl, default is 30.", default=30, type=int)
-    
+
     args = parser.parse_args()
     url = args.url
     max_urls = args.max_urls
