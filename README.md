@@ -37,6 +37,14 @@ python scrap_links.py -m 100 "http://example.net"
 python scrap_emails.py -t 4 example.net_internal_links.txt
 ```
 
+You can use a `for`-loop in bash for massive scraping:
+
+```bash
+for i in $(cat domain_list.txt); do python scrap_links.py -m 100 "$i"; done
+
+for i in $(ls *internal_links.txt); do python scrap_emails.py -t 8 $i; done
+```
+
 ## Creating a conda environment
 
 In the root folder of the repository run:
