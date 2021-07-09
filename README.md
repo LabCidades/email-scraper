@@ -1,5 +1,7 @@
 # email-scraper
 
+![GitHub](https://img.shields.io/github/license/LabCidades/email-scraper)
+
 A general-purpose email scrapper with multithread capabilities that crawles domains to extract email addresses from the domain's websites.
 
 ## How to Use
