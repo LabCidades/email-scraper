@@ -1,11 +1,13 @@
 name: email-scraper
 channels:
   - conda-forge
-  - auto
+  - defaults
 dependencies:
   - python=3.9
+  - pip
   - requests
   - urllib3
   - certifi
   - bs4
-  - pysitemap
+  - pip:
+    - pysitemap
