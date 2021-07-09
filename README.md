@@ -9,40 +9,39 @@ The email scrapper is a two-step procedure:
 1. Extract all links:
 
     ```bash
-    python scrap_links.py [-h] [-m MAX_URLS] url
+    python scrap_emails.py url
     ```
 
     where:
 
     * `url`: The URL to extract links from
-    * `-m MAX_URLS`: Number of max URLs to crawl, default is `30`
 
-2. Extract all e-mail addresses from the links:
+
+2. Proccess all e-mail addresses from the file with e-mails:
 
     ```bash
-    python scrap_emails.py [-h] [-t THREADS] file
+    python clean_emails.py file
     ```
 
     where:
 
-    * `file`: File `.txt` containing url's to scrape.
-    * `-t THREADS`: number of threads, default is `2`
+    * `file`: File `.txt` containing e-mai's to clean.
 
 ## Example
 
-Prefer `http://` over `https://`:
+Prefer `https://` over `http://`:
 
 ```bash
-python scrap_links.py -m 100 "http://example.net"
-python scrap_emails.py -t 4 example.net_internal_links.txt
+python scrap_emails.py "https://example.net" or "https://www.example.net"
+python clean_emails.py "www.example.net.txt"
 ```
 
 You can use a `for`-loop in bash for massive scraping:
 
 ```bash
-for i in $(cat domain_list.txt); do python scrap_links.py -m 100 "$i"; done
+for i in $(cat domain_list.txt); do python scrap_emails.py "$i"; done
 
-for i in $(ls *internal_links.txt); do python scrap_emails.py -t 8 $i; done
+for i in $(ls *.txt); do python clean_emails.py $i; done
 ```
 
 ## Creating a conda environment
